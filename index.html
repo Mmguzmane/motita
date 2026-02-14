@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para Motita Eve 💖</title>
-
   <style>
     #_toggle, ._toggle { display: none !important; }
 
@@ -13,11 +12,11 @@
       font-family: "Segoe UI", Arial, sans-serif;
       height: 100vh;
       width: 100vw;
-      overflow: hidden;
+      background: radial-gradient(circle at top, #ffb6c1, #ffe6f0, #ffffff);
       display: flex;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at top, #ffb6c1, #ffe6f0, #ffffff);
+      overflow: hidden;
     }
 
     /* Fondo Estrellas */
@@ -25,23 +24,42 @@
     .star { position: absolute; background: white; border-radius: 50%; animation: twinkle 3s infinite; }
     @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-    /* Card Principal */
+    /* Card Principal con Scroll si es necesario */
     .card {
-      width: 92%;
-      max-width: 420px;
-      height: 94vh;
-      max-height: 680px;
-      background: rgba(255,255,255,0.96);
+      width: 90%;
+      max-width: 400px;
+      height: 95vh;
+      max-height: 700px;
+      background: rgba(255,255,255,0.98);
       border-radius: 30px;
       padding: 20px;
       position: relative;
       display: flex;
       flex-direction: column;
+      align-items: center; /* Todo centrado */
       box-shadow: 0px 15px 45px rgba(216, 27, 96, 0.2);
       border: 2px solid white;
       box-sizing: border-box;
+      text-align: center;
     }
 
+    /* Árbol Centrado Arriba */
+    .tree-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin-bottom: 10px;
+    }
+    .trunk {
+      position: absolute; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 18px; height: 40px; background: #6d4c41; border-radius: 4px;
+    }
+    .heart { position: absolute; width: 10px; height: 10px; transform: rotate(45deg); }
+    .heart:before, .heart:after { content: ""; position: absolute; width: 10px; height: 10px; background: inherit; border-radius: 50%; }
+    .heart:before { top: -5px; } .heart:after { left: -5px; }
+
+    /* Textos */
     .title { font-size: 0.9rem; font-weight: 700; color: #c2185b; margin: 0; }
     .name { font-size: 1.8rem; font-weight: 900; color: #ff1744; margin: 5px 0; }
     
@@ -50,76 +68,64 @@
       font-weight: 800;
       color: #d81b60;
       background: #fff0f5;
-      padding: 10px;
+      padding: 12px;
       border-radius: 15px;
-      margin-bottom: 10px;
-      text-align: center;
+      margin: 10px 0;
       border: 1px dashed #ff1744;
-      line-height: 1.3;
+      line-height: 1.4;
     }
 
-    .message { 
-      font-size: 0.8rem; 
-      color: #444; 
-      line-height: 1.4; 
-      width: 60%; 
-      margin-bottom: 5px;
+    .personal-msg {
+      font-size: 0.8rem;
+      color: #555;
+      line-height: 1.4;
+      margin-bottom: 10px;
       font-style: italic;
     }
 
-    /* Árbol Corazones */
-    .tree { position: absolute; right: 10px; top: 60px; width: 140px; height: 180px; z-index: 1; }
-    .trunk {
-      position: absolute; bottom: 0; left: 60px;
-      width: 18px; height: 60px; background: #6d4c41; border-radius: 4px;
-    }
-    .heart { position: absolute; width: 10px; height: 10px; transform: rotate(45deg); }
-    .heart:before, .heart:after { content: ""; position: absolute; width: 10px; height: 10px; background: inherit; border-radius: 50%; }
-    .heart:before { top: -5px; } .heart:after { left: -5px; }
-
     /* Contador */
     .timer-box {
+      width: 100%;
       background: #fff5f7;
       border-radius: 15px;
       padding: 10px;
-      margin: 8px 0;
-      border-left: 5px solid #ff1744;
-      z-index: 2;
+      margin-bottom: 15px;
+      border-bottom: 3px solid #ff1744;
     }
     .timer-label { font-size: 11px; font-weight: bold; color: #888; }
-    .timer { font-size: 1rem; font-weight: 800; color: #d81b60; margin-top: 2px; }
+    .timer { font-size: 1.2rem; font-weight: 800; color: #d81b60; margin-top: 2px; }
 
-    /* Ositos */
+    /* Ositos más cerca */
     .bears {
-      margin-top: auto;
-      margin-bottom: 70px;
       display: flex;
       justify-content: center;
-      gap: 25px;
+      gap: 15px;
+      margin-top: auto;
+      margin-bottom: 70px; /* Espacio para botones */
     }
     .bear {
-      width: 80px; height: 100px; border-radius: 30px;
-      position: relative; display: flex; justify-content: center; align-items: center; font-size: 35px;
+      width: 70px; height: 85px; border-radius: 25px;
+      position: relative; display: flex; justify-content: center; align-items: center; font-size: 30px;
     }
     .bear.brown { background: #8d6e63; }
     .bear.panda { background: #fff; border: 2px solid #222; }
-    .bear-eyes { position: absolute; top: 30px; display: flex; gap: 14px; }
-    .eye { width: 6px; height: 6px; background: #222; border-radius: 50%; }
+    .bear-eyes { position: absolute; top: 25px; display: flex; gap: 12px; }
+    .eye { width: 5px; height: 5px; background: #222; border-radius: 50%; }
 
-    /* Botones */
+    /* Botones Inferiores */
     .btn-group {
       position: absolute; bottom: 15px; left: 0; width: 100%;
-      display: flex; justify-content: space-around; padding: 0 10px; box-sizing: border-box;
+      display: flex; justify-content: space-around; padding: 0 15px; box-sizing: border-box;
     }
     .btn {
-      width: 46%; height: 48px; border: none; border-radius: 25px;
-      color: white; font-weight: 900; cursor: pointer; font-size: 13px;
+      width: 46%; height: 45px; border: none; border-radius: 25px;
+      color: white; font-weight: 900; cursor: pointer; font-size: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     .tae-btn { background: #ff1744; }
     .music-btn { background: #673ab7; }
 
-    /* Modal Música */
+    /* Modal */
     .modal {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.9); display: none;
@@ -129,7 +135,7 @@
       background: white; padding: 20px; border-radius: 25px;
       width: 85%; max-width: 340px; text-align: center;
     }
-    iframe { width: 100%; height: 200px; border-radius: 15px; border: none; }
+    iframe { width: 100%; height: 180px; border-radius: 15px; border: none; }
   </style>
 </head>
 
@@ -137,6 +143,8 @@
   <div class="stars" id="stars"></div>
 
   <div class="card">
+    <div class="tree-container" id="tree"><div class="trunk"></div></div>
+
     <div class="title">Para el amor de mi vida 💖</div>
     <div class="name">Motita Eve</div>
     
@@ -144,15 +152,13 @@
       Gracias por ser mi felicidad, mi refugio y mi eterno San Valentín, la razón por la que el mundo se viste de ternura. 🌹
     </div>
 
-    <div class="message">
-      Si pudiera elegir un lugar seguro, sería a tu lado. No importa cuánto tiempo pase, siempre voy a elegirte a ti.
+    <div class="personal-msg">
+      "Si pudiera elegir un lugar seguro, sería a tu lado. No importa el tiempo, siempre te elegiré a ti."
     </div>
-
-    <div class="tree" id="tree"><div class="trunk"></div></div>
 
     <div class="timer-box">
       <div class="timer-label">LLEVAMOS AMÁNDONOS:</div>
-      <div class="timer" id="timer">Calculando tiempo...</div>
+      <div class="timer" id="timer">00d 00h 00m 00s</div>
     </div>
 
     <div class="bears">
@@ -167,7 +173,7 @@
     </div>
 
     <div class="btn-group">
-      <button class="btn tae-btn" onclick="alert('Te amo Motita Eve, hoy y siempre ♾️💖')">💗 MENSAJE</button>
+      <button class="btn tae-btn" onclick="alert('Te amo Motita Eve, eres mi alegría diaria ♾️💖')">💗 MENSAJE</button>
       <button class="btn music-btn" id="playMusic">🎶 CHOCOLATE</button>
     </div>
   </div>
@@ -176,7 +182,7 @@
     <div class="modal-content">
       <h3 style="color:#673ab7; margin-top:0">Nuestra Música 🎵</h3>
       <div id="playerContainer"></div>
-      <button onclick="closeMusic()" style="background:#eee; border:none; padding:10px 20px; border-radius:20px; cursor:pointer; margin-top:10px">Cerrar</button>
+      <button onclick="closeMusic()" style="background:#eee; border:none; padding:10px 20px; border-radius:20px; cursor:pointer; margin-top:10px">Volver</button>
     </div>
   </div>
 
@@ -194,14 +200,13 @@
     }
     setInterval(update, 1000); update();
 
-    // Nueva Música
+    // Música
     const btn = document.getElementById('playMusic');
     const modal = document.getElementById('musicModal');
     const container = document.getElementById('playerContainer');
 
     btn.onclick = () => {
       modal.style.display = 'flex';
-      // Se carga la nueva canción solicitada con autoplay
       container.innerHTML = `<iframe src="https://www.youtube.com/embed/UYzwkij-O4E?autoplay=1" allow="autoplay"></iframe>`;
     };
 
@@ -212,7 +217,7 @@
 
     // Estrellas
     const sc = document.getElementById("stars");
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 40; i++) {
       const s = document.createElement("div");
       s.className = "star";
       s.style.width = s.style.height = Math.random()*3+"px";
@@ -220,15 +225,15 @@
       sc.appendChild(s);
     }
 
-    // Árbol
+    // Árbol Arriba
     const tree = document.getElementById("tree");
     const colors = ["#ff1744", "#f50057", "#ff80ab"];
-    for (let i = 0; i < 90; i++) {
+    for (let i = 0; i < 80; i++) {
       const h = document.createElement("div");
       h.className = "heart";
       h.style.background = colors[Math.floor(Math.random()*3)];
-      const x = Math.random()*140; const y = Math.random()*120;
-      if (Math.pow(x-70, 2)/4000 + Math.pow(y-60, 2)/3000 <= 1) {
+      const x = Math.random()*130; const y = Math.random()*100;
+      if (Math.pow(x-65, 2)/3500 + Math.pow(y-50, 2)/2000 <= 1) {
         h.style.left = x+"px"; h.style.top = y+"px";
         tree.appendChild(h);
       }
