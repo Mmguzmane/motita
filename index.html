@@ -3,209 +3,216 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Motita 💖</title>
-
+  <title>Para Motita 💖</title>
   <style>
-    /* 1. Base y Fondo */
+    /* 1. LIMPIEZA TOTAL */
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Arial', sans-serif;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #ffe6f0;
+      background: radial-gradient(circle, #ffb6c1, #ffe6f0);
       overflow: hidden;
     }
 
-    /* Estrellas de fondo */
-    .star {
-      position: absolute; background: white; border-radius: 50%;
-      opacity: 0.5; animation: twinkle 3s infinite; z-index: 0;
-    }
-    @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+    /* Eliminar el texto _toggle residual */
+    #_toggle, ._toggle, [id*="toggle"] { display: none !important; opacity: 0 !important; }
 
-    /* 2. Card Principal */
+    /* 2. FONDO ANIMADO */
+    .heart-bg {
+      position: absolute; font-size: 20px;
+      animation: fall 5s linear infinite; z-index: 0; opacity: 0.6;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    /* 3. CARD PRINCIPAL */
     .card {
       width: 90%;
       max-width: 400px;
-      height: 600px;
-      background: white;
-      border-radius: 30px;
-      padding: 25px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: left;
       position: relative;
-      box-shadow: 0 15px 35px rgba(216, 27, 96, 0.2);
-      z-index: 10; /* Asegura que la carta esté sobre el fondo */
-      display: flex;
-      flex-direction: column;
+      z-index: 10;
+      border: 2px solid #fff;
     }
 
-    .title { font-size: 20px; font-weight: bold; color: #c2185b; }
-    .subtitle { font-size: 13px; color: #888; margin-bottom: 15px; }
-    .message { font-size: 14px; color: #444; line-height: 1.4; width: 60%; }
+    .title { color: #d81b60; font-size: 22px; font-weight: bold; margin-bottom: 5px; }
+    .subtitle { color: #666; font-size: 14px; margin-bottom: 20px; }
+    .message { font-size: 15px; color: #444; line-height: 1.5; width: 60%; margin-bottom: 20px; }
 
-    /* 3. Árbol (Lado derecho) */
-    .tree {
-      position: absolute; right: 20px; top: 70px;
-      width: 140px; height: 180px;
+    /* 4. ÁRBOL DE CORAZONES (Posicionamiento fijo) */
+    .tree-container {
+      position: absolute; right: 20px; top: 60px;
+      width: 130px; height: 160px;
     }
     .trunk {
-      position: absolute; bottom: 0; left: 60px;
-      width: 20px; height: 50px; background: #8d6e63; border-radius: 4px;
+      width: 15px; height: 40px; background: #795548;
+      margin: 0 auto; position: absolute; bottom: 0; left: 57px; border-radius: 3px;
     }
-    .heart-leaf {
-      position: absolute; width: 10px; height: 10px; background: #ff4081;
-      transform: rotate(45deg); border-radius: 2px;
+    .leaves {
+      width: 100px; height: 100px; background: #ff4081;
+      border-radius: 50%; filter: blur(15px); opacity: 0.3; margin: 0 auto;
     }
 
-    /* 4. Contador */
-    .timer-container { margin-top: auto; margin-bottom: 140px; }
-    .timer { font-size: 18px; font-weight: bold; color: #d81b60; }
+    /* 5. CONTADOR */
+    .timer-box { margin-bottom: 110px; }
+    .timer-label { font-size: 13px; color: #888; font-weight: bold; }
+    #timer { font-size: 18px; color: #c2185b; font-weight: bold; margin-top: 5px; }
 
-    /* 5. Ositos (Corregidos para no tapar nada) */
-    .bears-box {
-      position: absolute; bottom: 85px; width: 100%; left: 0;
-      display: flex; justify-content: center; gap: 40px;
+    /* 6. OSITOS (CORREGIDOS) */
+    .bears-row {
+      position: absolute; bottom: 80px; left: 0; width: 100%;
+      display: flex; justify-content: center; gap: 30px;
     }
     .bear {
-      width: 75px; height: 85px; border-radius: 25px 25px 15px 15px;
-      position: relative; display: flex; justify-content: center;
+      width: 80px; height: 90px; border-radius: 30px 30px 20px 20px;
+      position: relative; /* Clave para que los ojos no floten */
     }
-    .bear.brown { background: #a1887f; }
-    .bear.panda { background: #ffffff; border: 2px solid #ddd; }
-    .ear { width: 20px; height: 20px; border-radius: 50%; position: absolute; top: -8px; }
-    .brown .ear { background: #8d6e63; }
+    .bear.brown { background: #8d6e63; }
+    .bear.panda { background: #fff; border: 2px solid #eee; }
+    
+    .ear { width: 24px; height: 24px; border-radius: 50%; position: absolute; top: -8px; z-index: -1; }
+    .brown .ear { background: #6d4c41; }
     .panda .ear { background: #333; }
-
-    /* 6. Botones Inferiores */
-    .btn-group {
-      position: absolute; bottom: 20px; left: 0; width: 100%;
-      display: flex; justify-content: space-around;
+    
+    /* Ojos fijos dentro del oso */
+    .eyes {
+      position: absolute; top: 30px; width: 100%;
+      display: flex; justify-content: center; gap: 15px;
     }
+    .eye { width: 6px; height: 6px; background: #222; border-radius: 50%; }
+    .nose {
+      position: absolute; top: 40px; left: 50%; transform: translateX(-50%);
+      font-size: 10px;
+    }
+
+    /* 7. BOTONES */
+    .buttons { display: flex; justify-content: space-between; gap: 10px; }
     .btn {
-      padding: 12px 25px; border: none; border-radius: 50px;
+      flex: 1; padding: 12px; border: none; border-radius: 50px;
       color: white; font-weight: bold; cursor: pointer; transition: 0.3s;
     }
-    .tae-btn { background: #ff4081; }
-    .music-btn { background: #673ab7; }
+    .btn-tae { background: #ff1744; }
+    .btn-music { background: #673ab7; }
+    .btn:hover { transform: scale(1.05); }
 
-    /* 7. MODAL DE MÚSICA (CORREGIDO) */
-    .modal-overlay {
+    /* 8. REPRODUCTOR (MODAL) */
+    .modal {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7); display: none;
-      justify-content: center; align-items: center;
-      z-index: 9999; /* Máxima prioridad */
+      background: rgba(0,0,0,0.8); display: none;
+      justify-content: center; align-items: center; z-index: 1000;
     }
     .modal-content {
       background: white; padding: 20px; border-radius: 20px;
-      width: 85%; max-width: 350px; text-align: center;
+      width: 90%; max-width: 360px; text-align: center;
     }
     iframe { width: 100%; height: 200px; border-radius: 15px; border: none; }
     .close-btn { 
-      margin-top: 15px; background: #673ab7; color: white; 
-      border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;
+      margin-top: 15px; background: #673ab7; color: white; border: none;
+      padding: 10px 20px; border-radius: 10px; width: 100%; font-weight: bold;
     }
   </style>
 </head>
-
 <body>
 
-  <div id="stars-container"></div>
+  <div id="heart-rain"></div>
 
   <div class="card">
-    <div class="title">Para el amor de mi vida 💖</div>
-    <div class="subtitle">Desde el 04/09/2020 ♾️</div>
+    <div class="title">Para mi Motita 💖</div>
+    <div class="subtitle">Desde el 04/09/2020 hasta el infinito ♾️</div>
 
     <div class="message">
-      Eres mi lugar favorito en el mundo. <br><br>
-      Gracias por elegirme cada día y por llenar mi vida de luz. <br><br>
-      Te amo, Motita. 💕
+      Eres mi persona favorita. Gracias por estar conmigo en cada paso. <br><br>
+      Te amo mucho más de lo que las palabras pueden decir.
     </div>
 
-    <div class="tree" id="tree">
+    <div class="tree-container">
+      <div class="leaves"></div>
       <div class="trunk"></div>
     </div>
 
-    <div class="timer-container">
-      <div style="font-size: 12px; color: #666;">Nuestro amor florece hace:</div>
-      <div class="timer" id="timer">Cargando tiempo...</div>
+    <div class="timer-box">
+      <div class="timer-label">Llevamos amándonos:</div>
+      <div id="timer">Cargando...</div>
     </div>
 
-    <div class="bears-box">
+    <div class="bears-row">
       <div class="bear brown">
         <div class="ear" style="left:5px"></div><div class="ear" style="right:5px"></div>
-        <div style="margin-top:30px">💖</div>
+        <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+        <div class="nose">💖</div>
       </div>
       <div class="bear panda">
         <div class="ear" style="left:5px"></div><div class="ear" style="right:5px"></div>
-        <div style="margin-top:30px">💖</div>
+        <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+        <div class="nose">💖</div>
       </div>
     </div>
 
-    <div class="btn-group">
-      <button class="btn tae-btn" onclick="alert('Eres lo más lindo que tengo. ¡Te amo!')">💖 TAE</button>
-      <button class="btn music-btn" onclick="toggleMusic(true)">🎶 Chocolate</button>
+    <div class="buttons">
+      <button class="btn btn-tae" onclick="alert('¡Eres el amor de mi vida! 😍')">💗 TAE</button>
+      <button class="btn btn-music" onclick="openMusic()">🎶 Chocolate</button>
     </div>
   </div>
 
-  <div id="musicModal" class="modal-overlay">
+  <div id="musicModal" class="modal">
     <div class="modal-content">
-      <h3 style="color:#673ab7; margin-top:0;">🎵 Nuestra Canción</h3>
-      <iframe id="videoFrame" src="" allow="autoplay"></iframe>
-      <br>
-      <button class="close-btn" onclick="toggleMusic(false)">Cerrar Música</button>
+      <h3 style="margin-top:0; color:#673ab7">🎵 Chocolate - Jesse & Joy</h3>
+      <iframe id="ytPlayer" src="" allow="autoplay"></iframe>
+      <button class="close-btn" onclick="closeMusic()">Cerrar Música</button>
     </div>
   </div>
 
   <script>
-    // 1. Estrellas
-    const container = document.getElementById('stars-container');
-    for (let i = 0; i < 40; i++) {
-      const s = document.createElement('div');
-      s.className = 'star';
-      s.style.width = s.style.height = Math.random() * 3 + 'px';
-      s.style.left = Math.random() * 100 + 'vw';
-      s.style.top = Math.random() * 100 + 'vh';
-      s.style.animationDelay = Math.random() * 3 + 's';
-      container.appendChild(s);
-    }
-
-    // 2. Contador
-    const start = new Date(2020, 8, 4); 
-    function update() {
+    // Contador real
+    const startDate = new Date(2020, 8, 4); 
+    function updateTimer() {
       const now = new Date();
-      const diff = now - start;
+      const diff = now - startDate;
       const d = Math.floor(diff / 86400000);
       const h = Math.floor((diff / 3600000) % 24);
       const m = Math.floor((diff / 60000) % 60);
       const s = Math.floor((diff / 1000) % 60);
-      document.getElementById('timer').innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+      document.getElementById('timer').innerText = `${d}d ${h}h ${m}m ${s}s`;
     }
-    setInterval(update, 1000); update();
+    setInterval(updateTimer, 1000);
+    updateTimer();
 
-    // 3. Control de Música (Jesse & Joy - Chocolate)
-    function toggleMusic(show) {
+    // Lluvia de corazones
+    const rainContainer = document.getElementById('heart-rain');
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart-bg';
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+      rainContainer.appendChild(heart);
+    }
+
+    // Funciones del reproductor
+    function openMusic() {
       const modal = document.getElementById('musicModal');
-      const frame = document.getElementById('videoFrame');
-      if (show) {
-        modal.style.display = 'flex';
-        // Este es el link directo al video oficial de Chocolate
-        frame.src = "https://www.youtube.com/embed/fA9Vv_9mS_Q?autoplay=1";
-      } else {
-        modal.style.display = 'none';
-        frame.src = "";
-      }
+      const player = document.getElementById('ytPlayer');
+      // Link directo a Chocolate de Jesse & Joy
+      player.src = "https://www.youtube.com/embed/fA9Vv_9mS_Q?autoplay=1";
+      modal.style.display = 'flex';
     }
 
-    // 4. Corazones del árbol
-    const tree = document.getElementById('tree');
-    for (let i = 0; i < 40; i++) {
-      const h = document.createElement('div');
-      h.className = 'heart-leaf';
-      h.style.left = Math.random() * 100 + 'px';
-      h.style.top = Math.random() * 100 + 'px';
-      h.style.opacity = Math.random();
-      tree.appendChild(h);
+    function closeMusic() {
+      const modal = document.getElementById('musicModal');
+      const player = document.getElementById('ytPlayer');
+      player.src = ""; // Detiene el video al cerrar
+      modal.style.display = 'none';
     }
   </script>
 </body>
