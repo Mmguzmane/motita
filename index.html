@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Motita 💖</title>
+  <title>Para Motita Eve 💖</title>
 
   <style>
-    /* 1. Limpieza de errores visuales */
+    /* Limpieza de errores visuales */
     #_toggle, ._toggle { display: none !important; }
 
     body {
@@ -22,10 +22,7 @@
     }
 
     /* Fondo con estrellas */
-    .stars {
-      position: absolute; width: 100%; height: 100%;
-      z-index: -5; overflow: hidden;
-    }
+    .stars { position: absolute; width: 100%; height: 100%; z-index: -5; overflow: hidden; }
     .star {
       position: absolute; width: 3px; height: 3px;
       background: white; border-radius: 50%;
@@ -36,7 +33,7 @@
       50% { opacity: 1; transform: scale(1.4); }
     }
 
-    /* Corazones cayendo */
+    /* Corazones flotantes */
     .heart-float {
       position: absolute; font-size: 22px;
       animation: fall 6s linear infinite;
@@ -45,39 +42,43 @@
     }
     @keyframes fall {
       0% { transform: translateY(-60px) rotate(0deg); opacity: 0; }
-      15% { opacity: 1; }
       100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
-    /* Card principal - AJUSTADA PARA CELULAR */
+    /* Card Principal */
     .card {
       width: 95%;
       max-width: 440px;
-      height: 90vh;
-      max-height: 650px;
-      background: rgba(255,255,255,0.92);
+      height: 92vh;
+      max-height: 680px;
+      background: rgba(255,255,255,0.95);
       border-radius: 28px;
-      padding: 25px;
+      padding: 22px;
       position: relative;
       display: flex;
       flex-direction: column;
       backdrop-filter: blur(10px);
-      box-shadow: 0px 10px 35px rgba(0,0,0,0.2);
-      border: 2px solid rgba(255,255,255,0.5);
+      box-shadow: 0px 10px 35px rgba(216, 27, 96, 0.2);
+      border: 2px solid white;
     }
 
-    .title { font-size: 1.2rem; font-weight: 800; color: #c2185b; margin-bottom: 5px; }
-    .subtitle { font-size: 0.9rem; color: #444; margin-bottom: 15px; }
-    .message { font-size: 0.9rem; color: #555; line-height: 1.5; width: 65%; margin-bottom: 10px; }
+    .title { font-size: 1.1rem; font-weight: 800; color: #c2185b; margin-bottom: 2px; }
+    .name { font-size: 1.6rem; font-weight: 900; color: #ff1744; margin-bottom: 10px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+    .subtitle { font-size: 0.85rem; color: #666; margin-bottom: 12px; }
 
-    /* Árbol restaurado */
-    .tree {
-      position: absolute; right: 10px; top: 80px;
-      width: 160px; height: 220px; z-index: 1;
+    .message { 
+      font-size: 0.9rem; 
+      color: #444; 
+      line-height: 1.5; 
+      width: 65%; 
+      margin-bottom: 15px;
     }
+
+    /* Árbol de Corazones */
+    .tree { position: absolute; right: 10px; top: 70px; width: 150px; height: 200px; z-index: 1; }
     .trunk {
-      position: absolute; bottom: 0; left: 70px;
-      width: 25px; height: 80px;
+      position: absolute; bottom: 0; left: 65px;
+      width: 20px; height: 70px;
       background: linear-gradient(#8d6e63, #5d4037);
       border-radius: 5px;
     }
@@ -94,63 +95,66 @@
     .heart:after { left: -6px; top: 0; }
     @keyframes float { 0%, 100% { transform: translateY(0) rotate(45deg); } 50% { transform: translateY(-10px) rotate(45deg); } }
 
-    /* CONTADOR - SEPARADO DEL OSO */
+    /* Contador - Espacio Asegurado */
     .timer-container {
-      margin-top: 10px;
-      padding: 10px 0;
+      margin-top: 5px;
+      padding: 12px;
+      background: rgba(255, 182, 193, 0.15);
+      border-radius: 20px;
       z-index: 2;
+      text-align: left;
     }
-    .timer-title { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 5px; }
-    .timer { font-size: 16px; font-weight: 800; color: #d81b60; letter-spacing: 0.5px; }
+    .timer-title { font-size: 13px; font-weight: 700; color: #333; margin-bottom: 4px; }
+    .timer { font-size: 16px; font-weight: 800; color: #d81b60; }
 
-    /* Ositos con OJOS FIJOS */
+    /* Ositos */
     .bears {
       margin-top: auto;
-      margin-bottom: 70px; /* Sube los osos para que no tapen botones */
+      margin-bottom: 75px;
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 25px;
     }
     .bear {
-      width: 90px; height: 110px; border-radius: 35px;
+      width: 85px; height: 105px; border-radius: 35px;
       position: relative; display: flex; justify-content: center;
       align-items: center; font-size: 35px;
       box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
     }
     .bear.brown { background: #8d6e63; }
     .bear.panda { background: #fff; border: 2px solid #222; }
-    .bear-eyes { position: absolute; top: 30px; width: 100%; display: flex; justify-content: center; gap: 18px; }
+    .bear-eyes { position: absolute; top: 32px; width: 100%; display: flex; justify-content: center; gap: 16px; }
     .eye { width: 7px; height: 7px; background: #222; border-radius: 50%; }
-    .ear { width: 28px; height: 28px; border-radius: 50%; position: absolute; top: -10px; }
-    .brown .ear { background: #6d4c41; }
-    .panda .ear { background: #111; }
+    .ear { width: 26px; height: 26px; border-radius: 50%; position: absolute; top: -10px; }
+    .brown .ear { background: #6d4c41; } .panda .ear { background: #111; }
     .ear.left { left: 8px; } .ear.right { right: 8px; }
     .mini-heart { position: absolute; top: 5px; font-size: 18px; animation: beat 1.2s infinite; }
     @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
 
-    /* Botones Inferiores */
+    /* Botones */
     .btn-group {
       position: absolute; bottom: 20px; left: 0; width: 100%;
       display: flex; justify-content: space-around; padding: 0 15px; box-sizing: border-box;
     }
     .btn {
-      width: 45%; height: 48px; border: none; border-radius: 25px;
+      width: 45%; height: 50px; border: none; border-radius: 25px;
       color: white; font-weight: 900; cursor: pointer; transition: 0.3s;
-      display: flex; align-items: center; justify-content: center; font-size: 14px;
+      font-size: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     .tae-btn { background: linear-gradient(to right, #ff1744, #e91e63); }
     .music-btn { background: linear-gradient(to right, #7b1fa2, #512da8); }
-    .btn:active { transform: scale(0.95); }
 
     /* Modales */
-    .popup, .yt-modal {
-      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      background: white; border-radius: 25px; padding: 20px; width: 85%; max-width: 360px;
-      text-align: center; box-shadow: 0px 20px 50px rgba(0,0,0,0.5);
-      display: none; z-index: 1000;
+    .modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85); display: none;
+      justify-content: center; align-items: center; z-index: 1000;
     }
-    iframe { width: 100%; height: 220px; border-radius: 15px; border: none; }
-    .close-btn { margin-top: 15px; padding: 12px; border: none; border-radius: 20px; color: white; cursor: pointer; font-weight: 800; width: 100%; }
+    .modal-content {
+      background: white; padding: 25px; border-radius: 25px;
+      width: 85%; max-width: 350px; text-align: center;
+    }
+    iframe { width: 100%; height: 200px; border-radius: 15px; border: none; margin: 15px 0; }
   </style>
 </head>
 
@@ -159,15 +163,13 @@
   <div class="stars" id="stars"></div>
 
   <div class="card">
-    <div class="title">Para el amor de mi vida 💖 Motita:</div>
+    <div class="title">Para el amor de mi vida 💖</div>
+    <div class="name">Motita Eve</div>
     <div class="subtitle">Desde el 04/09/2020 hasta el infinito ♾️</div>
 
     <div class="message">
-      Si pudiera elegir un lugar seguro, sería a tu lado.  
-      <br><br>
-      No importa cuántos años pasen, siempre voy a elegirte a ti.  
-      <br><br>
-      Gracias por ser mi felicidad 💕
+      Feliz día de San Valentín, mi amor. Gracias por ser mi lugar seguro, mi alegría diaria y la persona con la que quiero compartir cada momento. <br><br>
+      <b>Gracias por ser mi felicidad 💕</b>
     </div>
 
     <div class="tree" id="tree"><div class="trunk"></div></div>
@@ -195,21 +197,26 @@
       <button class="btn music-btn" id="musicBtn">🎶 Chocolate</button>
     </div>
 
-    <div class="popup" id="popup">
-      <h2 style="color:#d81b60">Motita 💖</h2>
-      <p>Te amo con una calma que se siente como hogar. Gracias por reír conmigo y abrazarme el alma. <br><br><b>Siempre tú.</b> ♾️💘</p>
-      <button class="close-btn" style="background:#ff1744" id="closeBtn">Cerrar</button>
+    <div class="modal" id="popup">
+      <div class="modal-content">
+        <h2 style="color:#d81b60; margin:0">Motita Eve 💖</h2>
+        <p style="color:#444; line-height:1.6">Te amo con una calma que se siente como hogar. Gracias por reír conmigo y abrazarme el alma. <br><br><b>Siempre tú.</b> ♾️💘</p>
+        <button class="btn tae-btn" style="width:100%" id="closeBtn">Cerrar</button>
+      </div>
     </div>
 
-    <div class="yt-modal" id="ytModal">
-      <h3 style="margin:0 0 10px 0; color:#7b1fa2">Nuestra Canción 🎶</h3>
-      <iframe id="ytFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      <button class="close-btn" style="background:#7b1fa2" id="ytClose">Cerrar Música</button>
+    <div class="modal" id="ytModal">
+      <div class="modal-content">
+        <h3 style="margin:0; color:#7b1fa2">Nuestra Canción 🎶</h3>
+        <iframe id="ytFrame" src="" allow="autoplay; encrypted-media"></iframe>
+        <button class="btn music-btn" style="width:100%; margin-bottom:10px" onclick="window.open('https://www.youtube.com/watch?v=fA9Vv_9mS_Q')">Abrir en YouTube 📺</button>
+        <button id="ytClose" style="border:none; background:none; color:#666; cursor:pointer; font-weight:bold">Cerrar</button>
+      </div>
     </div>
   </div>
 
   <script>
-    // 1. Estrellas de fondo
+    // 1. Estrellas
     const starsContainer = document.getElementById("stars");
     for (let i = 0; i < 60; i++) {
       const star = document.createElement("div");
@@ -220,8 +227,8 @@
       starsContainer.appendChild(star);
     }
 
-    // 2. Temporizador Exacto
-    const startDate = new Date(2020, 8, 4, 0, 0, 0); 
+    // 2. Temporizador
+    const startDate = new Date(2020, 8, 4); 
     function updateTimer() {
       const now = new Date();
       const diff = now - startDate;
@@ -233,24 +240,22 @@
     }
     setInterval(updateTimer, 1000); updateTimer();
 
-    // 3. Árbol de corazones
+    // 3. Árbol
     const tree = document.getElementById("tree");
     const colors = ["#ff1744", "#f50057", "#ff4081", "#e91e63"];
     for (let i = 0; i < 150; i++) {
       const heart = document.createElement("div");
       heart.className = "heart";
       heart.style.background = colors[Math.floor(Math.random() * colors.length)];
-      const x = Math.random() * 160;
-      const y = Math.random() * 140;
-      if (Math.pow(x - 80, 2) / 5000 + Math.pow(y - 70, 2) / 4000 <= 1) {
-        heart.style.left = x + "px";
-        heart.style.top = y + "px";
-        heart.style.animationDelay = Math.random() * 2 + "s";
+      const x = Math.random() * 150;
+      const y = Math.random() * 130;
+      if (Math.pow(x - 75, 2) / 4500 + Math.pow(y - 65, 2) / 3500 <= 1) {
+        heart.style.left = x + "px"; heart.style.top = y + "px";
         tree.appendChild(heart);
       }
     }
 
-    // 4. Corazones flotantes
+    // 4. Lluvia de corazones
     setInterval(() => {
       const h = document.createElement("div");
       h.className = "heart-float";
@@ -261,15 +266,13 @@
     }, 600);
 
     // 5. Controles
-    document.getElementById("taeBtn").onclick = () => document.getElementById("popup").style.display = "block";
+    document.getElementById("taeBtn").onclick = () => document.getElementById("popup").style.display = "flex";
     document.getElementById("closeBtn").onclick = () => document.getElementById("popup").style.display = "none";
     
-    // Música (Chocolate - Jesse & Joy)
     const ytModal = document.getElementById("ytModal");
     const ytFrame = document.getElementById("ytFrame");
     document.getElementById("musicBtn").onclick = () => {
-      ytModal.style.display = "block";
-      // Usamos el ID de video oficial estable
+      ytModal.style.display = "flex";
       ytFrame.src = "https://www.youtube.com/embed/fA9Vv_9mS_Q?autoplay=1";
     };
     document.getElementById("ytClose").onclick = () => {
