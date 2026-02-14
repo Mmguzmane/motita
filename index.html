@@ -13,6 +13,7 @@
       margin: 0;
       font-family: "Segoe UI", Arial, sans-serif;
       height: 100vh;
+      width: 100vw;
       overflow: hidden;
       display: flex;
       justify-content: center;
@@ -25,13 +26,11 @@
       position: absolute; width: 100%; height: 100%;
       z-index: -5; overflow: hidden;
     }
-
     .star {
       position: absolute; width: 3px; height: 3px;
       background: white; border-radius: 50%;
       opacity: 0.7; animation: twinkle 3s infinite ease-in-out;
     }
-
     @keyframes twinkle {
       0%, 100% { opacity: 0.2; transform: scale(1); }
       50% { opacity: 1; transform: scale(1.4); }
@@ -44,115 +43,114 @@
       opacity: 0.85; z-index: -3;
       filter: drop-shadow(0px 0px 8px rgba(255,0,100,0.5));
     }
-
     @keyframes fall {
       0% { transform: translateY(-60px) rotate(0deg); opacity: 0; }
       15% { opacity: 1; }
       100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
-    /* Card principal */
+    /* Card principal - AJUSTADA PARA CELULAR */
     .card {
-      width: 440px;
-      height: 610px;
-      background: rgba(255,255,255,0.9);
+      width: 95%;
+      max-width: 440px;
+      height: 90vh;
+      max-height: 650px;
+      background: rgba(255,255,255,0.92);
       border-radius: 28px;
-      padding: 22px;
+      padding: 25px;
       position: relative;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
       backdrop-filter: blur(10px);
-      box-shadow: 0px 10px 35px rgba(0,0,0,0.25);
+      box-shadow: 0px 10px 35px rgba(0,0,0,0.2);
       border: 2px solid rgba(255,255,255,0.5);
     }
 
-    .title { font-size: 19px; font-weight: 800; color: #c2185b; margin-bottom: 10px; }
-    .subtitle { font-size: 14px; color: #444; margin-bottom: 14px; }
-    .message { font-size: 14px; color: #555; line-height: 1.6; width: 62%; }
+    .title { font-size: 1.2rem; font-weight: 800; color: #c2185b; margin-bottom: 5px; }
+    .subtitle { font-size: 0.9rem; color: #444; margin-bottom: 15px; }
+    .message { font-size: 0.9rem; color: #555; line-height: 1.5; width: 65%; margin-bottom: 10px; }
 
-    /* Árbol de corazones - RESTAURADO */
+    /* Árbol restaurado */
     .tree {
-      position: absolute; right: 12px; top: 110px;
-      width: 190px; height: 250px;
+      position: absolute; right: 10px; top: 80px;
+      width: 160px; height: 220px; z-index: 1;
     }
-
     .trunk {
-      position: absolute; bottom: 0; left: 80px;
-      width: 32px; height: 105px;
+      position: absolute; bottom: 0; left: 70px;
+      width: 25px; height: 80px;
       background: linear-gradient(#8d6e63, #5d4037);
-      border-radius: 10px;
+      border-radius: 5px;
     }
-
     .heart {
-      position: absolute; width: 14px; height: 14px;
-      transform: rotate(45deg); opacity: 0.95;
+      position: absolute; width: 12px; height: 12px;
+      transform: rotate(45deg); opacity: 0.9;
       animation: float 3s infinite ease-in-out;
     }
     .heart:before, .heart:after {
-      content: ""; position: absolute; width: 14px; height: 14px;
+      content: ""; position: absolute; width: 12px; height: 12px;
       background: inherit; border-radius: 50%;
     }
-    .heart:before { top: -7px; left: 0; }
-    .heart:after { left: -7px; top: 0; }
+    .heart:before { top: -6px; left: 0; }
+    .heart:after { left: -6px; top: 0; }
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(45deg); } 50% { transform: translateY(-10px) rotate(45deg); } }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(45deg); }
-      50% { transform: translateY(-12px) rotate(45deg); }
+    /* CONTADOR - SEPARADO DEL OSO */
+    .timer-container {
+      margin-top: 10px;
+      padding: 10px 0;
+      z-index: 2;
     }
+    .timer-title { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 5px; }
+    .timer { font-size: 16px; font-weight: 800; color: #d81b60; letter-spacing: 0.5px; }
 
-    /* Contador */
-    .timer-title { position: absolute; bottom: 190px; left: 22px; font-size: 14px; font-weight: 700; color: #333; }
-    .timer { position: absolute; bottom: 160px; left: 22px; font-size: 16px; font-weight: 800; color: #d81b60; }
-
-    /* Ositos con OJOS CORREGIDOS */
+    /* Ositos con OJOS FIJOS */
     .bears {
-      position: absolute; bottom: 90px; width: 100%;
-      display: flex; justify-content: center; gap: 30px;
+      margin-top: auto;
+      margin-bottom: 70px; /* Sube los osos para que no tapen botones */
+      display: flex;
+      justify-content: center;
+      gap: 20px;
     }
-
     .bear {
-      width: 100px; height: 120px; border-radius: 40px;
+      width: 90px; height: 110px; border-radius: 35px;
       position: relative; display: flex; justify-content: center;
-      align-items: center; font-size: 40px;
-      box-shadow: 0px 6px 15px rgba(0,0,0,0.15);
+      align-items: center; font-size: 35px;
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
     }
-
     .bear.brown { background: #8d6e63; }
     .bear.panda { background: #fff; border: 2px solid #222; }
-
-    /* Ojos que ya NO flotan */
-    .bear-eyes {
-      position: absolute; top: 35px; width: 100%;
-      display: flex; justify-content: center; gap: 20px;
-    }
-    .eye { width: 8px; height: 8px; background: #222; border-radius: 50%; }
-
-    .ear { width: 30px; height: 30px; border-radius: 50%; position: absolute; top: -12px; }
+    .bear-eyes { position: absolute; top: 30px; width: 100%; display: flex; justify-content: center; gap: 18px; }
+    .eye { width: 7px; height: 7px; background: #222; border-radius: 50%; }
+    .ear { width: 28px; height: 28px; border-radius: 50%; position: absolute; top: -10px; }
     .brown .ear { background: #6d4c41; }
     .panda .ear { background: #111; }
-    .ear.left { left: 10px; } .ear.right { right: 10px; }
-
-    .mini-heart { position: absolute; top: 5px; font-size: 20px; animation: beat 1.2s infinite; }
+    .ear.left { left: 8px; } .ear.right { right: 8px; }
+    .mini-heart { position: absolute; top: 5px; font-size: 18px; animation: beat 1.2s infinite; }
     @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
 
-    /* Botones */
-    .btn {
-      width: 140px; height: 50px; border: none; border-radius: 30px;
-      color: white; font-weight: 900; cursor: pointer; transition: 0.25s;
+    /* Botones Inferiores */
+    .btn-group {
+      position: absolute; bottom: 20px; left: 0; width: 100%;
+      display: flex; justify-content: space-around; padding: 0 15px; box-sizing: border-box;
     }
-    .tae-btn { background: linear-gradient(to right, #ff1744, #e91e63); position: absolute; bottom: 20px; left: 20px; }
-    .music-btn { background: linear-gradient(to right, #7b1fa2, #512da8); position: absolute; bottom: 20px; right: 20px; }
+    .btn {
+      width: 45%; height: 48px; border: none; border-radius: 25px;
+      color: white; font-weight: 900; cursor: pointer; transition: 0.3s;
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+    }
+    .tae-btn { background: linear-gradient(to right, #ff1744, #e91e63); }
+    .music-btn { background: linear-gradient(to right, #7b1fa2, #512da8); }
+    .btn:active { transform: scale(0.95); }
 
     /* Modales */
     .popup, .yt-modal {
-      position: absolute; top: 100px; left: 50%;
-      transform: translateX(-50%); background: white;
-      border-radius: 20px; padding: 20px; width: 340px;
-      text-align: center; box-shadow: 0px 10px 40px rgba(0,0,0,0.4);
-      display: none; z-index: 100;
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: white; border-radius: 25px; padding: 20px; width: 85%; max-width: 360px;
+      text-align: center; box-shadow: 0px 20px 50px rgba(0,0,0,0.5);
+      display: none; z-index: 1000;
     }
-
-    iframe { width: 100%; height: 200px; border-radius: 15px; border: none; }
-    .close-btn { margin-top: 10px; padding: 10px 20px; border: none; border-radius: 20px; color: white; cursor: pointer; font-weight: 800; width: 100%; }
+    iframe { width: 100%; height: 220px; border-radius: 15px; border: none; }
+    .close-btn { margin-top: 15px; padding: 12px; border: none; border-radius: 20px; color: white; cursor: pointer; font-weight: 800; width: 100%; }
   </style>
 </head>
 
@@ -169,15 +167,15 @@
       <br><br>
       No importa cuántos años pasen, siempre voy a elegirte a ti.  
       <br><br>
-      Gracias por existir y por ser mi felicidad 💕
+      Gracias por ser mi felicidad 💕
     </div>
 
-    <div class="tree" id="tree">
-      <div class="trunk"></div>
-    </div>
+    <div class="tree" id="tree"><div class="trunk"></div></div>
 
-    <div class="timer-title">Mi amor por ti comenzó hace...</div>
-    <div class="timer" id="timer"></div>
+    <div class="timer-container">
+      <div class="timer-title">Llevamos amándonos:</div>
+      <div class="timer" id="timer">Calculando...</div>
+    </div>
 
     <div class="bears">
       <div class="bear brown">
@@ -192,25 +190,28 @@
       </div>
     </div>
 
-    <button class="btn tae-btn" id="taeBtn">💗 TAE</button>
-    <button class="btn music-btn" id="musicBtn">🎶 Chocolate</button>
+    <div class="btn-group">
+      <button class="btn tae-btn" id="taeBtn">💗 TAE</button>
+      <button class="btn music-btn" id="musicBtn">🎶 Chocolate</button>
+    </div>
 
     <div class="popup" id="popup">
-      <h2>Motita 💖</h2>
-      <p>Te amo con una calma que se siente como hogar. <br><br> Gracias por quedarte y abrazarme el alma. <br><b>Siempre tú.</b> ♾️💘</p>
+      <h2 style="color:#d81b60">Motita 💖</h2>
+      <p>Te amo con una calma que se siente como hogar. Gracias por reír conmigo y abrazarme el alma. <br><br><b>Siempre tú.</b> ♾️💘</p>
       <button class="close-btn" style="background:#ff1744" id="closeBtn">Cerrar</button>
     </div>
 
     <div class="yt-modal" id="ytModal">
-      <iframe id="ytFrame" src="" allow="autoplay; encrypted-media"></iframe>
-      <button class="close-btn" style="background:#7b1fa2" id="ytClose">Cerrar Música 🎶</button>
+      <h3 style="margin:0 0 10px 0; color:#7b1fa2">Nuestra Canción 🎶</h3>
+      <iframe id="ytFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <button class="close-btn" style="background:#7b1fa2" id="ytClose">Cerrar Música</button>
     </div>
   </div>
 
   <script>
-    // Estrellas
+    // 1. Estrellas de fondo
     const starsContainer = document.getElementById("stars");
-    for (let i = 0; i < 70; i++) {
+    for (let i = 0; i < 60; i++) {
       const star = document.createElement("div");
       star.className = "star";
       star.style.left = Math.random() * 100 + "vw";
@@ -219,37 +220,37 @@
       starsContainer.appendChild(star);
     }
 
-    // Timer
-    const startDate = new Date(2020, 8, 4);
+    // 2. Temporizador Exacto
+    const startDate = new Date(2020, 8, 4, 0, 0, 0); 
     function updateTimer() {
       const now = new Date();
       const diff = now - startDate;
       const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff / 3600000) % 24);
-      const m = Math.floor((diff / 60000) % 60);
-      const s = Math.floor((diff / 1000) % 60);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
       document.getElementById("timer").innerHTML = `${d}d ${h}h ${m}m ${s}s`;
     }
     setInterval(updateTimer, 1000); updateTimer();
 
-    // Generar Hojas del Árbol (Corazones)
+    // 3. Árbol de corazones
     const tree = document.getElementById("tree");
     const colors = ["#ff1744", "#f50057", "#ff4081", "#e91e63"];
-    for (let i = 0; i < 180; i++) {
+    for (let i = 0; i < 150; i++) {
       const heart = document.createElement("div");
       heart.className = "heart";
       heart.style.background = colors[Math.floor(Math.random() * colors.length)];
-      const x = Math.random() * 180;
-      const y = Math.random() * 150;
-      // Filtro circular para la copa del árbol
-      if (Math.pow(x - 90, 2) / 6400 + Math.pow(y - 75, 2) / 4900 <= 1) {
+      const x = Math.random() * 160;
+      const y = Math.random() * 140;
+      if (Math.pow(x - 80, 2) / 5000 + Math.pow(y - 70, 2) / 4000 <= 1) {
         heart.style.left = x + "px";
         heart.style.top = y + "px";
+        heart.style.animationDelay = Math.random() * 2 + "s";
         tree.appendChild(heart);
       }
     }
 
-    // Corazones cayendo
+    // 4. Corazones flotantes
     setInterval(() => {
       const h = document.createElement("div");
       h.className = "heart-float";
@@ -257,19 +258,18 @@
       h.style.left = Math.random() * 100 + "vw";
       document.body.appendChild(h);
       setTimeout(() => h.remove(), 6000);
-    }, 500);
+    }, 600);
 
-    // Controles
+    // 5. Controles
     document.getElementById("taeBtn").onclick = () => document.getElementById("popup").style.display = "block";
     document.getElementById("closeBtn").onclick = () => document.getElementById("popup").style.display = "none";
     
-    // Música corregida (Jesse y Joy - Chocolate)
-    const musicBtn = document.getElementById("musicBtn");
+    // Música (Chocolate - Jesse & Joy)
     const ytModal = document.getElementById("ytModal");
     const ytFrame = document.getElementById("ytFrame");
-    
-    musicBtn.onclick = () => {
+    document.getElementById("musicBtn").onclick = () => {
       ytModal.style.display = "block";
+      // Usamos el ID de video oficial estable
       ytFrame.src = "https://www.youtube.com/embed/fA9Vv_9mS_Q?autoplay=1";
     };
     document.getElementById("ytClose").onclick = () => {
