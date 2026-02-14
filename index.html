@@ -6,7 +6,6 @@
   <title>Para Motita Eve 💖</title>
 
   <style>
-    /* Limpieza de errores visuales */
     #_toggle, ._toggle { display: none !important; }
 
     body {
@@ -21,264 +20,239 @@
       background: radial-gradient(circle at top, #ffb6c1, #ffe6f0, #ffffff);
     }
 
-    /* Fondo con estrellas */
-    .stars { position: absolute; width: 100%; height: 100%; z-index: -5; overflow: hidden; }
-    .star {
-      position: absolute; width: 3px; height: 3px;
-      background: white; border-radius: 50%;
-      opacity: 0.7; animation: twinkle 3s infinite ease-in-out;
-    }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.2; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.4); }
-    }
+    /* Estrellas y Corazones */
+    .stars { position: absolute; width: 100%; height: 100%; z-index: -5; }
+    .star { position: absolute; background: white; border-radius: 50%; animation: twinkle 3s infinite; }
+    @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-    /* Corazones flotantes */
     .heart-float {
       position: absolute; font-size: 22px;
-      animation: fall 6s linear infinite;
-      opacity: 0.85; z-index: -3;
-      filter: drop-shadow(0px 0px 8px rgba(255,0,100,0.5));
+      animation: fall 6s linear infinite; z-index: -3;
     }
     @keyframes fall {
-      0% { transform: translateY(-60px) rotate(0deg); opacity: 0; }
-      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+      0% { transform: translateY(-50px); opacity: 0; }
+      100% { transform: translateY(110vh); opacity: 0; }
     }
 
     /* Card Principal */
     .card {
-      width: 95%;
-      max-width: 440px;
+      width: 92%;
+      max-width: 420px;
       height: 92vh;
-      max-height: 680px;
-      background: rgba(255,255,255,0.95);
-      border-radius: 28px;
+      max-height: 660px;
+      background: rgba(255,255,255,0.96);
+      border-radius: 30px;
       padding: 22px;
       position: relative;
       display: flex;
       flex-direction: column;
-      backdrop-filter: blur(10px);
-      box-shadow: 0px 10px 35px rgba(216, 27, 96, 0.2);
+      box-shadow: 0px 15px 45px rgba(216, 27, 96, 0.2);
       border: 2px solid white;
+      box-sizing: border-box;
     }
 
-    .title { font-size: 1.1rem; font-weight: 800; color: #c2185b; margin-bottom: 2px; }
-    .name { font-size: 1.6rem; font-weight: 900; color: #ff1744; margin-bottom: 10px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
-    .subtitle { font-size: 0.85rem; color: #666; margin-bottom: 12px; }
+    .title { font-size: 1rem; font-weight: 700; color: #c2185b; margin: 0; }
+    .name { font-size: 1.8rem; font-weight: 900; color: #ff1744; margin: 5px 0; }
+    
+    .valentines-msg {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #d81b60;
+      background: #fff0f5;
+      padding: 8px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      text-align: center;
+      border: 1px dashed #ff1744;
+    }
 
     .message { 
-      font-size: 0.9rem; 
+      font-size: 0.85rem; 
       color: #444; 
-      line-height: 1.5; 
-      width: 65%; 
-      margin-bottom: 15px;
+      line-height: 1.4; 
+      width: 60%; 
+      margin-bottom: 10px;
     }
 
-    /* Árbol de Corazones */
-    .tree { position: absolute; right: 10px; top: 70px; width: 150px; height: 200px; z-index: 1; }
+    /* Árbol */
+    .tree { position: absolute; right: 10px; top: 60px; width: 140px; height: 180px; z-index: 1; }
     .trunk {
-      position: absolute; bottom: 0; left: 65px;
-      width: 20px; height: 70px;
-      background: linear-gradient(#8d6e63, #5d4037);
-      border-radius: 5px;
+      position: absolute; bottom: 0; left: 60px;
+      width: 18px; height: 60px; background: #6d4c41; border-radius: 4px;
     }
-    .heart {
-      position: absolute; width: 12px; height: 12px;
-      transform: rotate(45deg); opacity: 0.9;
-      animation: float 3s infinite ease-in-out;
-    }
-    .heart:before, .heart:after {
-      content: ""; position: absolute; width: 12px; height: 12px;
-      background: inherit; border-radius: 50%;
-    }
-    .heart:before { top: -6px; left: 0; }
-    .heart:after { left: -6px; top: 0; }
-    @keyframes float { 0%, 100% { transform: translateY(0) rotate(45deg); } 50% { transform: translateY(-10px) rotate(45deg); } }
+    .heart { position: absolute; width: 10px; height: 10px; transform: rotate(45deg); }
+    .heart:before, .heart:after { content: ""; position: absolute; width: 10px; height: 10px; background: inherit; border-radius: 50%; }
+    .heart:before { top: -5px; } .heart:after { left: -5px; }
 
-    /* Contador - Espacio Asegurado */
-    .timer-container {
-      margin-top: 5px;
+    /* Contador Mejorado */
+    .timer-box {
+      background: #fff5f7;
+      border-radius: 15px;
       padding: 12px;
-      background: rgba(255, 182, 193, 0.15);
-      border-radius: 20px;
-      z-index: 2;
-      text-align: left;
+      margin: 10px 0;
+      border-left: 5px solid #ff1744;
     }
-    .timer-title { font-size: 13px; font-weight: 700; color: #333; margin-bottom: 4px; }
-    .timer { font-size: 16px; font-weight: 800; color: #d81b60; }
+    .timer-label { font-size: 12px; font-weight: bold; color: #888; }
+    .timer { font-size: 1.1rem; font-weight: 800; color: #d81b60; margin-top: 3px; }
 
     /* Ositos */
     .bears {
       margin-top: auto;
-      margin-bottom: 75px;
+      margin-bottom: 70px;
       display: flex;
       justify-content: center;
-      gap: 25px;
+      gap: 20px;
     }
     .bear {
-      width: 85px; height: 105px; border-radius: 35px;
-      position: relative; display: flex; justify-content: center;
-      align-items: center; font-size: 35px;
-      box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+      width: 80px; height: 100px; border-radius: 30px;
+      position: relative; display: flex; justify-content: center; align-items: center; font-size: 35px;
     }
     .bear.brown { background: #8d6e63; }
     .bear.panda { background: #fff; border: 2px solid #222; }
-    .bear-eyes { position: absolute; top: 32px; width: 100%; display: flex; justify-content: center; gap: 16px; }
-    .eye { width: 7px; height: 7px; background: #222; border-radius: 50%; }
-    .ear { width: 26px; height: 26px; border-radius: 50%; position: absolute; top: -10px; }
-    .brown .ear { background: #6d4c41; } .panda .ear { background: #111; }
-    .ear.left { left: 8px; } .ear.right { right: 8px; }
-    .mini-heart { position: absolute; top: 5px; font-size: 18px; animation: beat 1.2s infinite; }
-    @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+    .bear-eyes { position: absolute; top: 30px; display: flex; gap: 14px; }
+    .eye { width: 6px; height: 6px; background: #222; border-radius: 50%; }
 
     /* Botones */
     .btn-group {
-      position: absolute; bottom: 20px; left: 0; width: 100%;
-      display: flex; justify-content: space-around; padding: 0 15px; box-sizing: border-box;
+      position: absolute; bottom: 15px; left: 0; width: 100%;
+      display: flex; justify-content: space-around; padding: 0 10px; box-sizing: border-box;
     }
     .btn {
-      width: 45%; height: 50px; border: none; border-radius: 25px;
-      color: white; font-weight: 900; cursor: pointer; transition: 0.3s;
-      font-size: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 46%; height: 48px; border: none; border-radius: 25px;
+      color: white; font-weight: 900; cursor: pointer; font-size: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-    .tae-btn { background: linear-gradient(to right, #ff1744, #e91e63); }
-    .music-btn { background: linear-gradient(to right, #7b1fa2, #512da8); }
+    .tae-btn { background: #ff1744; }
+    .music-btn { background: #673ab7; }
 
-    /* Modales */
+    /* Modal Música */
     .modal {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.85); display: none;
-      justify-content: center; align-items: center; z-index: 1000;
+      background: rgba(0,0,0,0.9); display: none;
+      justify-content: center; align-items: center; z-index: 2000;
     }
     .modal-content {
-      background: white; padding: 25px; border-radius: 25px;
-      width: 85%; max-width: 350px; text-align: center;
+      background: white; padding: 20px; border-radius: 25px;
+      width: 85%; max-width: 340px; text-align: center;
     }
-    iframe { width: 100%; height: 200px; border-radius: 15px; border: none; margin: 15px 0; }
+    iframe { width: 100%; height: 200px; border-radius: 15px; border: none; }
   </style>
 </head>
 
 <body>
-
   <div class="stars" id="stars"></div>
 
   <div class="card">
     <div class="title">Para el amor de mi vida 💖</div>
     <div class="name">Motita Eve</div>
-    <div class="subtitle">Desde el 04/09/2020 hasta el infinito ♾️</div>
+    
+    <div class="valentines-msg">
+      GRACIAS POR SER MI FELICIDAD Y FELIZ SAN VALENTIN 🌹
+    </div>
 
     <div class="message">
-      Feliz día de San Valentín, mi amor. Gracias por ser mi lugar seguro, mi alegría diaria y la persona con la que quiero compartir cada momento. <br><br>
-      <b>Gracias por ser mi felicidad 💕</b>
+      Si pudiera elegir un lugar seguro, sería a tu lado. No importa cuánto tiempo pase, siempre voy a elegirte a ti.
     </div>
 
     <div class="tree" id="tree"><div class="trunk"></div></div>
 
-    <div class="timer-container">
-      <div class="timer-title">Llevamos amándonos:</div>
+    <div class="timer-box">
+      <div class="timer-label">NUESTRO TIEMPO JUNTOS:</div>
       <div class="timer" id="timer">Calculando...</div>
     </div>
 
     <div class="bears">
       <div class="bear brown">
-        <div class="ear left"></div><div class="ear right"></div>
         <div class="bear-eyes"><div class="eye"></div><div class="eye"></div></div>
-        🐻<div class="mini-heart">💗</div>
+        🐻
       </div>
       <div class="bear panda">
-        <div class="ear left"></div><div class="ear right"></div>
         <div class="bear-eyes"><div class="eye"></div><div class="eye"></div></div>
-        🐼<div class="mini-heart">💗</div>
+        🐼
       </div>
     </div>
 
     <div class="btn-group">
-      <button class="btn tae-btn" id="taeBtn">💗 TAE</button>
-      <button class="btn music-btn" id="musicBtn">🎶 Chocolate</button>
+      <button class="btn tae-btn" onclick="showTae()">💗 MENSAJE</button>
+      <button class="btn music-btn" id="playMusic">🎶 CHOCOLATE</button>
     </div>
+  </div>
 
-    <div class="modal" id="popup">
-      <div class="modal-content">
-        <h2 style="color:#d81b60; margin:0">Motita Eve 💖</h2>
-        <p style="color:#444; line-height:1.6">Te amo con una calma que se siente como hogar. Gracias por reír conmigo y abrazarme el alma. <br><br><b>Siempre tú.</b> ♾️💘</p>
-        <button class="btn tae-btn" style="width:100%" id="closeBtn">Cerrar</button>
-      </div>
-    </div>
-
-    <div class="modal" id="ytModal">
-      <div class="modal-content">
-        <h3 style="margin:0; color:#7b1fa2">Nuestra Canción 🎶</h3>
-        <iframe id="ytFrame" src="" allow="autoplay; encrypted-media"></iframe>
-        <button class="btn music-btn" style="width:100%; margin-bottom:10px" onclick="window.open('https://www.youtube.com/watch?v=fA9Vv_9mS_Q')">Abrir en YouTube 📺</button>
-        <button id="ytClose" style="border:none; background:none; color:#666; cursor:pointer; font-weight:bold">Cerrar</button>
-      </div>
+  <div class="modal" id="musicModal">
+    <div class="modal-content">
+      <h3 style="color:#673ab7; margin-top:0">Nuestra Música 🎵</h3>
+      <div id="playerContainer"></div>
+      <p style="font-size: 11px; color: #666;">Cerrar para volver a la carta</p>
+      <button onclick="closeMusic()" style="background:#eee; border:none; padding:10px 20px; border-radius:20px; cursor:pointer">Cerrar</button>
     </div>
   </div>
 
   <script>
-    // 1. Estrellas
-    const starsContainer = document.getElementById("stars");
-    for (let i = 0; i < 60; i++) {
-      const star = document.createElement("div");
-      star.className = "star";
-      star.style.left = Math.random() * 100 + "vw";
-      star.style.top = Math.random() * 100 + "vh";
-      star.style.animationDelay = Math.random() * 3 + "s";
-      starsContainer.appendChild(star);
-    }
-
-    // 2. Temporizador
-    const startDate = new Date(2020, 8, 4); 
-    function updateTimer() {
+    // Contador
+    const start = new Date(2020, 8, 4);
+    function update() {
       const now = new Date();
-      const diff = now - startDate;
+      const diff = now - start;
       const d = Math.floor(diff / 86400000);
       const h = Math.floor((diff % 86400000) / 3600000);
       const m = Math.floor((diff % 3600000) / 60000);
       const s = Math.floor((diff % 60000) / 1000);
       document.getElementById("timer").innerHTML = `${d}d ${h}h ${m}m ${s}s`;
     }
-    setInterval(updateTimer, 1000); updateTimer();
+    setInterval(update, 1000); update();
 
-    // 3. Árbol
+    // Música (Solución definitiva: insertar iframe al hacer clic)
+    const btn = document.getElementById('playMusic');
+    const modal = document.getElementById('musicModal');
+    const container = document.getElementById('playerContainer');
+
+    btn.onclick = () => {
+      modal.style.display = 'flex';
+      // Insertamos el video con autoplay activado por el clic del usuario
+      container.innerHTML = `<iframe src="https://www.youtube.com/embed/fA9Vv_9mS_Q?autoplay=1" allow="autoplay"></iframe>`;
+    };
+
+    function closeMusic() {
+      modal.style.display = 'none';
+      container.innerHTML = ''; // Detiene la música al cerrar
+    }
+
+    function showTae() {
+      alert("Para Motita Eve: ¡Eres mi mayor felicidad! Te amo hoy y siempre. ♾️💖");
+    }
+
+    // Estrellas
+    const sc = document.getElementById("stars");
+    for (let i = 0; i < 50; i++) {
+      const s = document.createElement("div");
+      s.className = "star";
+      s.style.width = s.style.height = Math.random()*3+"px";
+      s.style.left = Math.random()*100+"vw"; s.style.top = Math.random()*100+"vh";
+      sc.appendChild(s);
+    }
+
+    // Árbol
     const tree = document.getElementById("tree");
-    const colors = ["#ff1744", "#f50057", "#ff4081", "#e91e63"];
-    for (let i = 0; i < 150; i++) {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.style.background = colors[Math.floor(Math.random() * colors.length)];
-      const x = Math.random() * 150;
-      const y = Math.random() * 130;
-      if (Math.pow(x - 75, 2) / 4500 + Math.pow(y - 65, 2) / 3500 <= 1) {
-        heart.style.left = x + "px"; heart.style.top = y + "px";
-        tree.appendChild(heart);
+    const colors = ["#ff1744", "#f50057", "#ff80ab"];
+    for (let i = 0; i < 100; i++) {
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.style.background = colors[Math.floor(Math.random()*3)];
+      const x = Math.random()*140; const y = Math.random()*120;
+      if (Math.pow(x-70, 2)/4000 + Math.pow(y-60, 2)/3000 <= 1) {
+        h.style.left = x+"px"; h.style.top = y+"px";
+        tree.appendChild(h);
       }
     }
 
-    // 4. Lluvia de corazones
+    // Lluvia
     setInterval(() => {
       const h = document.createElement("div");
       h.className = "heart-float";
-      h.innerHTML = ["💗", "💖", "💕", "❤️"][Math.floor(Math.random() * 4)];
-      h.style.left = Math.random() * 100 + "vw";
+      h.innerHTML = "❤️"; h.style.left = Math.random()*100+"vw";
       document.body.appendChild(h);
       setTimeout(() => h.remove(), 6000);
-    }, 600);
-
-    // 5. Controles
-    document.getElementById("taeBtn").onclick = () => document.getElementById("popup").style.display = "flex";
-    document.getElementById("closeBtn").onclick = () => document.getElementById("popup").style.display = "none";
-    
-    const ytModal = document.getElementById("ytModal");
-    const ytFrame = document.getElementById("ytFrame");
-    document.getElementById("musicBtn").onclick = () => {
-      ytModal.style.display = "flex";
-      ytFrame.src = "https://www.youtube.com/embed/fA9Vv_9mS_Q?autoplay=1";
-    };
-    document.getElementById("ytClose").onclick = () => {
-      ytModal.style.display = "none";
-      ytFrame.src = "";
-    };
+    }, 800);
   </script>
 </body>
 </html>
