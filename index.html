@@ -17,12 +17,26 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
+      position: relative;
     }
 
     /* Fondo Estrellas */
     .stars { position: absolute; width: 100%; height: 100%; z-index: -5; }
     .star { position: absolute; background: white; border-radius: 50%; animation: twinkle 3s infinite; }
     @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    /* Lluvia de Corazones */
+    .heart-rain {
+      position: absolute;
+      color: #ff4d6d;
+      font-size: 20px;
+      user-select: none;
+      z-index: -2;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); }
+    }
 
     /* Card Principal */
     .card {
@@ -41,6 +55,7 @@
       box-sizing: border-box;
       text-align: center;
       position: relative;
+      z-index: 10;
     }
 
     /* Árbol en la parte superior */
@@ -55,9 +70,9 @@
       transform: translateX(-50%);
       width: 15px; height: 25px; background: #6d4c41; border-radius: 3px;
     }
-    .heart { position: absolute; width: 8px; height: 8px; transform: rotate(45deg); }
-    .heart:before, .heart:after { content: ""; position: absolute; width: 8px; height: 8px; background: inherit; border-radius: 50%; }
-    .heart:before { top: -4px; } .heart:after { left: -4px; }
+    .heart-leaf { position: absolute; width: 8px; height: 8px; transform: rotate(45deg); }
+    .heart-leaf:before, .heart-leaf:after { content: ""; position: absolute; width: 8px; height: 8px; background: inherit; border-radius: 50%; }
+    .heart-leaf:before { top: -4px; } .heart-leaf:after { left: -4px; }
 
     /* Textos */
     .title { font-size: 0.85rem; font-weight: 700; color: #c2185b; margin: 5px 0 0 0; }
@@ -101,7 +116,7 @@
       justify-content: center;
       gap: 20px;
       margin-top: auto;
-      margin-bottom: 80px; /* Espacio para que no se encime con botones */
+      margin-bottom: 80px;
     }
     .bear-container {
       width: 80px; height: 90px; border-radius: 25px;
@@ -111,7 +126,7 @@
     .brown { background: #8d6e63; }
     .panda { background: #ffffff; border: 2px solid #222; }
 
-    /* Botones Inferiores */
+    /* Botones */
     .btn-wrap {
       position: absolute; bottom: 15px; left: 0; width: 100%;
       display: flex; justify-content: space-around; padding: 0 15px; box-sizing: border-box;
@@ -126,7 +141,7 @@
     .btn-msg { background: #ff1744; }
     .btn-music { background: #673ab7; }
 
-    /* Modal Música */
+    /* Modal */
     .modal {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.9); display: none;
@@ -182,7 +197,25 @@
   </div>
 
   <script>
-    // Contador
+    // 1. Lluvia de Corazones
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart-rain');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+      heart.style.opacity = Math.random();
+      heart.style.fontSize = Math.random() * 15 + 10 + 'px';
+      
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+    setInterval(createHeart, 300);
+
+    // 2. Contador
     const start = new Date(2020, 8, 4);
     function update() {
       const now = new Date();
@@ -195,7 +228,7 @@
     }
     setInterval(update, 1000); update();
 
-    // Música - Mi Marciana de Alejandro Sanz
+    // 3. Música
     const playBtn = document.getElementById('playMusic');
     const modal = document.getElementById('musicModal');
     const videoArea = document.getElementById('videoArea');
@@ -210,12 +243,12 @@
       videoArea.innerHTML = '';
     }
 
-    // Dibujar Árbol
+    // 4. Dibujar Árbol
     const tree = document.getElementById("tree");
     const colors = ["#ff1744", "#f50057", "#ff80ab"];
     for (let i = 0; i < 60; i++) {
       const h = document.createElement("div");
-      h.className = "heart";
+      h.className = "heart-leaf";
       h.style.background = colors[Math.floor(Math.random()*3)];
       const x = Math.random()*110; const y = Math.random()*70;
       if (Math.pow(x-55, 2)/2200 + Math.pow(y-35, 2)/1000 <= 1) {
@@ -224,7 +257,7 @@
       }
     }
 
-    // Estrellas
+    // 5. Estrellas
     const stars = document.getElementById("stars");
     for (let i = 0; i < 40; i++) {
       const s = document.createElement("div");
